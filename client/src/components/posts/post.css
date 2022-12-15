@@ -1,1 +1,5 @@
-/*# sourceMappingURL=post.css.map */
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}/*# sourceMappingURL=post.css.map */
