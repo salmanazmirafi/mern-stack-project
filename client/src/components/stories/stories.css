@@ -1,29 +1,74 @@
-.stories {
+.theme-light .stories {
   display: flex;
   gap: 10px;
   height: 250px;
   margin-bottom: 30px;
+  background-color: white;
+  border-radius: 10px;
 }
-.stories .story {
+.theme-light .stories .story {
   flex: 1;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
-.stories img {
+.theme-light .stories img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.stories span {
+.theme-light .stories span {
   position: absolute;
   bottom: 10px;
   left: 10px;
   color: white;
   font-weight: 500;
 }
-.stories button {
+.theme-light .stories button {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  color: white;
+  background-color: #5271ff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-dark .stories {
+  display: flex;
+  gap: 10px;
+  height: 250px;
+  margin-bottom: 30px;
+  background-color: #222;
+  border-radius: 10px;
+}
+.theme-dark .stories .story {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.theme-dark .stories img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.theme-dark .stories span {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-weight: 500;
+}
+.theme-dark .stories button {
   position: absolute;
   bottom: 40px;
   left: 10px;

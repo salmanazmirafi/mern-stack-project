@@ -1,7 +1,7 @@
-
+@import "../../App.scss";
 
 .profile {
- 
+  @include themify($themes) {
     background-color: themed("bgSoft");
 
     .images {
@@ -30,13 +30,13 @@
     .profileContainer {
       padding: 20px 70px;
 
-    //   @include mobile{
-    //     padding: 10px;
-    //   }
+      //   @include mobile{
+      //     padding: 10px;
+      //   }
 
-    //   @include tablet{
-    //     padding: 20px;
-    //   }
+      //   @include tablet{
+      //     padding: 20px;
+      //   }
 
       .uInfo {
         height: 180px;
@@ -64,12 +64,15 @@
           display: flex;
           gap: 10px;
 
-        //   @include tablet{
-        //     flex-wrap: wrap;
-        //   }
+          //   @include tablet{
+          //     flex-wrap: wrap;
+          //   }
 
-          a{
+          a {
             color: themed("textColorSoft");
+          }
+          .ficon {
+            font-size: 30px;
           }
         }
 
@@ -118,8 +121,11 @@
           align-items: center;
           justify-content: flex-end;
           gap: 10px;
+          .ficon {
+            font-size: 30px;
+          }
         }
       }
     }
-  
+  }
 }

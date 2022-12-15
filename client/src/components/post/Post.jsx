@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
+
 import Comments from '../comments/Comments';
 import './post.css'
 
 const Post = ({post}) => {
   const [commentOpen, setCommentOpen] = useState(false);
+
 
   //TEMPORARY
   const liked = false;
@@ -24,7 +26,7 @@ const Post = ({post}) => {
               <span className="date">1 min ago</span>
             </div>
           </div>
-          {/* <MoreHorizIcon /> */}
+          <i className="fa-solid fa-ellipsis"></i>
         </div>
         <div className="content">
           <p>{post.desc}</p>
@@ -32,15 +34,15 @@ const Post = ({post}) => {
         </div>
         <div className="info">
           <div className="item">
-            {/* {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />} */}
+            {liked ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}
             12 Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            {/* <TextsmsOutlinedIcon /> */}
+           <i className="fa-solid fa-comment"></i>
             12 Comments
           </div>
           <div className="item">
-            {/* <ShareOutlinedIcon /> */}
+          <i className="fa-solid fa-share"></i>
             Share
           </div>
         </div>

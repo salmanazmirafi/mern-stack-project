@@ -1,7 +1,10 @@
 import "./profile.css"
 import Posts from '../../components/posts/Posts'
+import { AuthContext } from "../../context/authContext"
+import { useContext } from "react"
 
 const Profile = () => {
+  const {currentUser} = useContext(AuthContext)
   return (
     <div className="profile">
       <div className="images">
@@ -11,7 +14,7 @@ const Profile = () => {
           className="cover"
         />
         <img
-          src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"
+          src={currentUser.profilePic}
           alt=""
           className="profilePic"
         />
@@ -20,38 +23,43 @@ const Profile = () => {
         <div className="uInfo">
           <div className="left">
             <a href="http://facebook.com">
-              {/* <FacebookTwoToneIcon fontSize="large" /> */}
+            <i className="ficon fa-brands fa-facebook" ></i>
+            
             </a>
             <a href="http://facebook.com">
-              {/* <InstagramIcon fontSize="large" /> */}
+            <i className="ficon fa-brands fa-instagram"></i>
+              
             </a>
             <a href="http://facebook.com">
-              {/* <TwitterIcon fontSize="large" /> */}
+            <i className="ficon fa-brands fa-twitter"></i>
+             
             </a>
             <a href="http://facebook.com">
-              {/* <LinkedInIcon fontSize="large" /> */}
+            <i className="ficon fa-brands fa-linkedin"></i>
+             
             </a>
             <a href="http://facebook.com">
-              {/* <PinterestIcon fontSize="large" /> */}
+            <i className="ficon fa-brands fa-pinterest"></i>
+             
             </a>
           </div>
           <div className="center">
-            <span>Salman</span>
+            <span>{currentUser.name}</span>
             <div className="info">
               <div className="item">
-                {/* <PlaceIcon /> */}
+              <i className="ficon fa-solid fa-location-dot"></i>
                 <span>USA</span>
               </div>
               <div className="item">
-                {/* <LanguageIcon /> */}
-                <span>lama.dev</span>
+              <i className="ficon fa-solid fa-language"></i>
+                <span>English</span>
               </div>
             </div>
             <button>follow</button>
           </div>
           <div className="right">
-            {/* <EmailOutlinedIcon /> */}
-            {/* <MoreVertIcon /> */}
+          <i className="ficon fa-regular fa-envelope"></i>
+          <i className="ficon fa-solid fa-ellipsis-vertical"></i>
           </div>
         </div>
       <Posts/>

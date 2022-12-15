@@ -12,18 +12,22 @@ import Messages from "../../assets/10.png";
 import Tutorials from "../../assets/11.png";
 import Courses from "../../assets/12.png";
 import Fund from "../../assets/13.png";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Leftbar = () => {
+  const {currentUser} = useContext(AuthContext)
+
   return (
     <div className="leftBar">
       <div className="container">
         <div className="menu">
           <div className="user">
             <img
-              src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"
+              src={currentUser.profilePic}
               alt=""
             />
-            <span>Salman</span>
+            <span>{currentUser.name}</span>
           </div>
 
           <div className="item">

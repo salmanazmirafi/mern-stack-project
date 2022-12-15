@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 import './comments.css'
 
 const Comments = () => {
+  const {currentUser} = useContext(AuthContext)
+
   const comments = [
     {
       id: 1,
@@ -22,7 +26,7 @@ const Comments = () => {
   return (
     <div className="comments">
       <div className="write">
-        <img src='https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png' alt="" />
+        <img src={currentUser.profilePic} alt="" />
         <input type="text" placeholder="write a comment" />
         <button>Send</button>
       </div>

@@ -11,7 +11,7 @@ const Posts = () => {
       profilePic:
         "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      img: "https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      img: "https://cdn.pixabay.com/photo/2019/02/22/10/26/swan-4013225__340.jpg",
     },
     {
       id: 2,
@@ -20,6 +20,7 @@ const Posts = () => {
       profilePic:
         "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
       desc: "Tenetur iste voluptates dolorem rem commodi voluptate pariatur, voluptatum, laboriosam consequatur enim nostrum cumque! Maiores a nam non adipisci minima modi tempore.",
+      img: "https://cdn.pixabay.com/photo/2015/03/30/12/35/sunset-698501__340.jpg",
     },
   ];
 
