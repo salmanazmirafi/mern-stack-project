@@ -20,6 +20,9 @@
     display: flex;
     align-items: center;
     gap: 30px;
+    @include mobile{
+     
+    }
 
     span {
       font-weight: bold;
@@ -40,6 +43,14 @@
       background-color: transparent;
       color: themed("textColor");
       outline: none;
+
+      @include mobile{
+        display: none;
+      }
+
+      @include tablet{
+        width: 200px;
+      }
     }
   }
 
@@ -47,6 +58,11 @@
     display: flex;
     align-items: center;
     gap: 20px;
+
+    @include mobile{
+      display: none;
+    }
+
     .user {
       display: flex;
       align-items: center;

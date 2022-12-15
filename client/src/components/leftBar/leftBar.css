@@ -8,6 +8,11 @@
   background-color: white;
   color: #000;
 }
+@media (max-width: 480px) {
+  .theme-light .leftBar {
+    display: none;
+  }
+}
 .theme-light .leftBar::-webkit-scrollbar {
   display: none;
 }
@@ -63,6 +68,11 @@
   overflow: scroll;
   background-color: #222;
   color: whitesmoke;
+}
+@media (max-width: 480px) {
+  .theme-dark .leftBar {
+    display: none;
+  }
 }
 .theme-dark .leftBar::-webkit-scrollbar {
   display: none;

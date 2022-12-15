@@ -8,6 +8,16 @@
   background-color: white;
   color: #000;
 }
+@media (max-width: 480px) {
+  .theme-light .rightBar {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .theme-light .rightBar {
+    display: none;
+  }
+}
 .theme-light .rightBar::-webkit-scrollbar {
   display: none;
 }
@@ -84,6 +94,16 @@
   overflow: scroll;
   background-color: #222;
   color: whitesmoke;
+}
+@media (max-width: 480px) {
+  .theme-dark .rightBar {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .theme-dark .rightBar {
+    display: none;
+  }
 }
 .theme-dark .rightBar::-webkit-scrollbar {
   display: none;
