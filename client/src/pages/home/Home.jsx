@@ -1,10 +1,15 @@
 import React from 'react'
+import Posts from '../../components/posts/Posts'
+import Share from '../../components/share/Share'
+import Stories from '../../components/stories/Stories'
 import './home.css'
 
 const Home = () => {
   return (
     <div className='home'>
-      Home<i class="fa-solid fa-user"></i>
+     <Stories/>
+     <Share/>
+     <Posts/>
     </div>
   )
 }
