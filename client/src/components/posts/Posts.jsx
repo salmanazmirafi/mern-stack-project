@@ -1,34 +1,20 @@
 import "./post.css";
 import Post from "../post/Post";
+import { useQuery } from '@tanstack/react-query'
+import { makeRequest } from "../../axios";
 
 const Posts = () => {
   //TEMPORARY
-  const posts = [
-    {
-      id: 1,
-      name: "Salman",
-      userId: 1,
-      profilePic:
-        "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      img: "https://cdn.pixabay.com/photo/2019/02/22/10/26/swan-4013225__340.jpg",
-    },
-    {
-      id: 2,
-      name: "Salman",
-      userId: 2,
-      profilePic:
-        "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
-      desc: "Tenetur iste voluptates dolorem rem commodi voluptate pariatur, voluptatum, laboriosam consequatur enim nostrum cumque! Maiores a nam non adipisci minima modi tempore.",
-      img: "https://cdn.pixabay.com/photo/2015/03/30/12/35/sunset-698501__340.jpg",
-    },
-  ];
-
+  const { isLoading, error, data } = useQuery(["post"], () =>
+    makeRequest.get("/post").then((res) => {
+      return res.data;
+    })
+  );
   return (
     <div className="posts">
-      {posts.map((post) => (
+      {error ? "Something Web Wrong" : (isLoading ? "Lodding........" : data.map((post) => (
         <Post post={post} key={post.id} />
-      ))}
+      )))}
     </div>
   );
 };

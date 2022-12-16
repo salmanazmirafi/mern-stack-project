@@ -9,12 +9,12 @@ const Profile = () => {
     <div className="profile">
       <div className="images">
         <img
-          src="https://images.pexels.com/photos/13440765/pexels-photo-13440765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src={currentUser.coverpic}
           alt=""
           className="cover"
         />
         <img
-          src={currentUser.profilePic}
+          src={currentUser.profile}
           alt=""
           className="profilePic"
         />

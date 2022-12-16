@@ -27,7 +27,7 @@ const Navbar = () => {
         <i className="fa-regular fa-bell"></i>
         <div className="user">
           <img
-            src={currentUser.profilePic}
+            src={currentUser.profile}
             alt=""
           />
           <span>{currentUser.name}</span>

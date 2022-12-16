@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-
+import moment from 'moment'
 import Comments from '../comments/Comments';
 import './post.css'
 
@@ -15,7 +15,7 @@ const Post = ({post}) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={post.profile} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${post.userId}`}
@@ -23,14 +23,14 @@ const Post = ({post}) => {
               >
                 <span className="name">{post.name}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <i className="fa-solid fa-ellipsis"></i>
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={post.img} alt="" />
+          <img src={post.image} alt="" />
         </div>
         <div className="info">
           <div className="item">
