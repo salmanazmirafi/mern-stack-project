@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import morgan from "morgan";
 const app = express();
+import cors from 'cors'
 
 // Route Middleware Impost
 import authRoute from "./routes/auth.js";
@@ -11,6 +12,7 @@ import authRoute from "./routes/auth.js";
 //Security Middleware Import
 app.use(morgan("common"))
 app.use(cookieParser())
+app.use(cors())
 
 
 // config

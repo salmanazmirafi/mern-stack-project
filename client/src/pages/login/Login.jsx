@@ -2,11 +2,16 @@ import "./login.css";
 import {Link} from 'react-router-dom'
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
+import { useState } from "react";
 
 const Login = () => {
   const {login} = useContext(AuthContext)
+  const [input, setInput] = useState({
+    username: "",
+    password: "",
+  });
 
-  const handaleClick=()=>{
+  const handaleClick=async()=>{
     login()
   }
   return <div className="login">

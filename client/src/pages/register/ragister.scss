@@ -67,8 +67,12 @@
             border-bottom: 1px solid lightgray;
             padding: 20px 10px;
             outline: none;
+            font-size: 17px;
           }
-  
+          .erorm{
+            color: red;
+            font-size: 14px;
+          }
           button {
             width: 50%;
             padding: 15px;

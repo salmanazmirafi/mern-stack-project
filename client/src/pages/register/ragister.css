@@ -61,6 +61,11 @@
   border-bottom: 1px solid lightgray;
   padding: 20px 10px;
   outline: none;
+  font-size: 17px;
+}
+.login .card .right form .erorm {
+  color: red;
+  font-size: 14px;
 }
 .login .card .right form button {
   width: 50%;
