@@ -3,7 +3,6 @@ import Register from "./pages/register/Ragester";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
   Navigate,
 } from "react-router-dom";
