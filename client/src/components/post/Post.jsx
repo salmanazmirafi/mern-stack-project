@@ -30,7 +30,7 @@ const Post = ({post}) => {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={post.image} alt="" />
+          <img src={"/upload/"+ post.image} alt="" />
         </div>
         <div className="info">
           <div className="item">

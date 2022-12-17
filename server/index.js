@@ -9,6 +9,29 @@ import multer from "multer";
 import authRoute from "./routes/auth.js";
 import postRoute from "./routes/posts.js";
 
+
+//Security Middleware Import
+app.use(morgan("common"));
+app.use(cookieParser());
+app.use((req, res, next) => {
+  req.connection.setNoDelay(true)
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", true);
+      res.header("Access-Control-Allow-Origin", "https://xxx"); 
+
+  res.header('Access-Control-Expose-Headers', 'agreementrequired');
+
+  next()
+});
+app.use(express.json());
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+);
+
+
 // File Upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -26,19 +49,6 @@ app.post("/api/v1/upload", upload.single("file"), (req, res) => {
   res.status(200).json(file.filename);
 });
 
-//Security Middleware Import
-app.use(morgan("common"));
-app.use(cookieParser());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
-app.use(express.json());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
 
 // Routes
 app.use("/api/v1/users", authRoute);

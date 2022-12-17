@@ -14,7 +14,7 @@ const Share = () => {
       const formData = new FormData();
    formData.append("file", file);
       const res = await makeRequest.post("/upload", formData);
-      console.log(res);
+      return res.data
     } catch (error) {
       console.log(error);
     }
@@ -76,16 +76,16 @@ const Share = () => {
             />
             <label htmlFor="file">
               <div className="item">
-                <img src="" alt="" />
+                <img src="https://img.icons8.com/3d-fluency/2x/picture.png" alt="" />
                 <span>Add Image</span>
               </div>
             </label>
             <div className="item">
-              <img src="" alt="" />
+              <img src="https://img.icons8.com/ios-filled/2x/point-objects.png" alt="" />
               <span>Add Place</span>
             </div>
             <div className="item">
-              <img src="" alt="" />
+              <img src="https://img.icons8.com/ios-glyphs/2x/tags.png" alt="" />
               <span>Tag Friends</span>
             </div>
           </div>
