@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import moment from 'moment'
-import Comments from '../comments/Comments';
-import './post.css'
+import moment from "moment";
+import Comments from "../comments/Comments";
+import "./post.css";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
-const Post = ({post}) => {
+const Post = ({ post }) => {
+  const { currentUser } = useContext(AuthContext);
   const [commentOpen, setCommentOpen] = useState(false);
+  const { isLoading, error, data } = useQuery(["like", post.id], () =>
+    makeRequest.get("/like?postId=" + post.id).then((res) => {
+      return res.data;
+    })
+  );
 
+  console.log(data);
 
+const like = true
   //TEMPORARY
-  const liked = false;
+
   return (
     <div className="post">
       <div className="container">
@@ -30,26 +42,32 @@ const Post = ({post}) => {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={"/upload/"+ post.image} alt="" />
+          <img src={"/upload/" + post.image} alt="" />
         </div>
         <div className="info">
           <div className="item">
-            {liked ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}
-            12 Likes
+          { isLoading ? (
+              "loading"
+            ) :data.includes(currentUser.id) ? (
+              <i className="fa-solid fa-heart" style={{ color: "red" }}></i>
+            ) : (
+              <i className="fa-regular fa-heart"></i>
+            )}
+            {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-           <i className="fa-solid fa-comment"></i>
-            12 Comments
+            <i className="fa-solid fa-comment"></i>
+            See Comments
           </div>
           <div className="item">
-          <i className="fa-solid fa-share"></i>
+            <i className="fa-solid fa-share"></i>
             Share
           </div>
         </div>
-        {commentOpen && <Comments postId={post.id}/>}
+        {commentOpen && <Comments postId={post.id} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

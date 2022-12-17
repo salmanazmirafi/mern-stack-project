@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 
 // Get Comment
 export const getComment = (req,res)=>{
-
       const q =
        `SELECT c.*, u.id AS userId, name, profile FROM comment AS c JOIN user AS u ON (u.id = c.userId)
        WHERE c.postId = ? ORDER BY c.createdAt DESC`;
@@ -13,10 +12,10 @@ export const getComment = (req,res)=>{
     db.query(q,[req.query.postId], (err, data) => {
         if (err) return res.status(500).json(err);
         return res.status(200).json(data);
-        console.log(data);
       });
    
 }
+
 // Add Comment
 export const addComment = (req, res) => {
     const token = req.cookies.access_token;

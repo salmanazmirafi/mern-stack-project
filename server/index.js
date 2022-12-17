@@ -9,6 +9,7 @@ import multer from "multer";
 import authRoute from "./routes/auth.js";
 import postRoute from "./routes/posts.js";
 import commentRoute from "./routes/comment.js";
+import likeRoute from "./routes/like.js";
 
 
 //Security Middleware Import
@@ -55,6 +56,7 @@ app.post("/api/v1/upload", upload.single("file"), (req, res) => {
 app.use("/api/v1/users", authRoute);
 app.use("/api/v1", postRoute);
 app.use("/api/v1", commentRoute);
+app.use("/api/v1", likeRoute);
 
 // Server Connection 🔂
 const port = process.env.PORT || 5000;
