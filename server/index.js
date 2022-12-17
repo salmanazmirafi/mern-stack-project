@@ -8,6 +8,7 @@ import multer from "multer";
 // Route Middleware Impost
 import authRoute from "./routes/auth.js";
 import postRoute from "./routes/posts.js";
+import commentRoute from "./routes/comment.js";
 
 
 //Security Middleware Import
@@ -53,6 +54,7 @@ app.post("/api/v1/upload", upload.single("file"), (req, res) => {
 // Routes
 app.use("/api/v1/users", authRoute);
 app.use("/api/v1", postRoute);
+app.use("/api/v1", commentRoute);
 
 // Server Connection 🔂
 const port = process.env.PORT || 5000;

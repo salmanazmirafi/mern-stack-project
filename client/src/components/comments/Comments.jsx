@@ -1,28 +1,17 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
-import './comments.css'
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+import "./comments.css";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
 
-const Comments = () => {
-  const {currentUser} = useContext(AuthContext)
+const Comments = ({postId}) => {
+  const { currentUser } = useContext(AuthContext);
+  const { isLoading, error, data } = useQuery(["comment"], () =>
+    makeRequest.get("/comment?postId" +postId).then((res) => {
+      return res.data;
+    })
+  );
 
-  const comments = [
-    {
-      id: 1,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
-      name: "Salman",
-      userId: 1,
-      profilePicture:
-        "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
-    },
-    {
-      id: 2,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
-      name: "Salman",
-      userId: 2,
-      profilePicture:
-        "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
-    },
-  ];
   return (
     <div className="comments">
       <div className="write">
@@ -30,18 +19,20 @@ const Comments = () => {
         <input type="text" placeholder="write a comment" />
         <button>Send</button>
       </div>
-      {comments.map((comment) => (
-        <div className="comment">
-          <img src={comment.profilePicture} alt="" />
-          <div className="info">
-            <span>{comment.name}</span>
-            <p>{comment.desc}</p>
-          </div>
-          <span className="date">1 hour ago</span>
-        </div>
-      ))}
+      {isLoading
+        ? "Loading....."
+        : data.map((comment) => (
+            <div className="comment">
+              <img src={comment.profilePicture} alt="" />
+              <div className="info">
+                <span>{comment.name}</span>
+                <p>{comment.desc}</p>
+              </div>
+              <span className="date">1 hour ago</span>
+            </div>
+          ))}
     </div>
-  )
-}
+  );
+};
 
-export default Comments
+export default Comments;
