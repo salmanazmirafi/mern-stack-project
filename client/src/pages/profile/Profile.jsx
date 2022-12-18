@@ -2,14 +2,28 @@ import "./profile.css";
 import Posts from "../../components/posts/Posts";
 import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
+import { useLocation } from "react-router-dom";
+
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
+  const userId = parseInt(useLocation().pathname.split("/")[2]);
+
+  const { isLoading, error, data } = useQuery(["users"], () =>
+    makeRequest.get("/user/find/" + userId).then((res) => {
+      return res.data;
+    })
+  );
+
   return (
     <div className="profile">
-      <div className="images">
-        <img src={currentUser.coverpic} alt="" className="cover" />
-        <img src={currentUser.profile} alt="" className="profilePic" />
+      {isLoading ? "Loading....." :
+        <>
+        <div className="images">
+        <img src={data.coverpic} alt="" className="cover" />
+        <img src={data.profile} alt="" className="profilePic" />
       </div>
       <div className="profileContainer">
         <div className="uInfo">
@@ -31,32 +45,34 @@ const Profile = () => {
             </a>
           </div>
           <div className="center">
-            <span>{currentUser.name}</span>
+            <span>{data.name}</span>
             <div className="info">
               <div className="item">
                 <i className="ficon fa-solid fa-location-dot"></i>
-                <span>USA</span>
+                <span>{data.city}</span>
               </div>
               <div className="item">
-                {currentUser.id === 5 ? (
+                {data.id === 5 ? (
                   <span>500M Follower</span>
                 ) : (
                   <>
                     <i className="ficon fa-solid fa-language"></i>
-                    <span>English</span>
+                    <span>{data.website}</span>
                   </>
                 )}
               </div>
             </div>
-            <button>follow</button>
+          {userId ===currentUser.id ?(<button>Update</button>): <button>follow</button>}
           </div>
           <div className="right">
             <i className="ficon fa-regular fa-envelope"></i>
             <i className="ficon fa-solid fa-ellipsis-vertical"></i>
           </div>
         </div>
-        <Posts />
+        <Posts userId={userId}/>
       </div>
+        </>
+      }
     </div>
   );
 };

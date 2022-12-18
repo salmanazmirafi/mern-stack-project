@@ -3,25 +3,56 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import Comments from "../comments/Comments";
 import "./post.css";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
+
 const Post = ({ post }) => {
   const { currentUser } = useContext(AuthContext);
   const [commentOpen, setCommentOpen] = useState(false);
-  const { isLoading, error, data } = useQuery(["like", post.id], () =>
-    makeRequest.get("/like?postId=" + post.id).then((res) => {
-      return res.data;
-    })
-  );
+  const { isLoading, data } = useQuery(["like", post.id], () =>
+  makeRequest.get("/like?postId=" + post.id).then((res) => {
+    return res.data;
+  })
+);
 
-  console.log(data);
+console.log(post);
 
-const like = true
-  //TEMPORARY
+const queryClient = useQueryClient();
 
+const mutation = useMutation(
+  (liked) => {
+    if (liked) return makeRequest.delete("/like?postId=" + post.id);
+    return makeRequest.post("/like", { postId: post.id });
+  },
+  {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(["likes"]);
+    },
+  }
+);
+// const deleteMutation = useMutation(
+//   (postId) => {
+//     return makeRequest.delete("/posts/" + postId);
+//   },
+//   {
+//     onSuccess: () => {
+//       // Invalidate and refetch
+//       queryClient.invalidateQueries(["posts"]);
+//     },
+//   }
+// );
+
+const handleLike = () => {
+  mutation.mutate(data.includes(currentUser.id));
+};
+
+// const handleDelete = () => {
+//   deleteMutation.mutate(post.id);
+// };
   return (
     <div className="post">
       <div className="container">
@@ -46,17 +77,21 @@ const like = true
         </div>
         <div className="info">
           <div className="item">
-          { isLoading ? (
+          {isLoading ? (
               "loading"
-            ) :data.includes(currentUser.id) ? (
-              <i className="fa-solid fa-heart" style={{ color: "red" }}></i>
+            ) : data.includes(currentUser.id) ? (
+              
+              <i className="fa-solid fa-heart"
+                style={{ color: "red" }}
+                onClick={handleLike}
+              ></i>
             ) : (
-              <i className="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart" onClick={handleLike} ></i>
             )}
             {data?.length} Likes
           </div>
-          <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            <i className="fa-solid fa-comment"></i>
+          <div className="item" onClick={() => setCommentOpen(!commentOpen)} >
+            <i className="fa-solid fa-comment" onClick={handleLike}></i>
             See Comments
           </div>
           <div className="item">

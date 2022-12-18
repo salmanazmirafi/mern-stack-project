@@ -32,3 +32,20 @@ export const addLike = (req, res) => {
       });
     });
   };
+
+  // Delete Like
+export const deleteLike = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not logged in!");
+
+  jwt.verify(token, "ldlre8939dodik", (err, userInfo) => {
+    if (err) return res.status(403).json("Token is not valid!");
+
+    const q = "DELETE FROM likes WHERE `userId` = ? AND `postId` = ?";
+
+    db.query(q, [userInfo.id, req.query.postId], (err, data) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json("Post has been disliked.");
+    });
+  });
+};
