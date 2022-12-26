@@ -22,13 +22,28 @@ exports.getAllProduct = catchAsyncErrors(async (req, res, next) => {
 });
 // Get All Product (Admin)
 exports.getAdminProduct = catchAsyncErrors(async (req, res) => {
-  const apiFeature = new ApiFeatures(productModel.find(), req.query).search();
+  const resultPerPage = 8;
+  const productCount = await productModel.countDocuments()
 
-  const findAll = await apiFeature
+  const apiFeature = new ApiFeatures(productModel.find(), req.query)
+    .search()
+    .filter();
+
+    let products = await apiFeature.query;
+
+    let filteredProductsCount = products.length;
+  
+    apiFeature.pagination(resultPerPage);
+
+
+  const findAll = await apiFeature.query;
 
   res.status(200).json({
     success: true,
     findAll,
+    productCount,
+    resultPerPage,
+    filteredProductsCount
   });
 });
 
