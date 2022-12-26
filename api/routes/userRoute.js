@@ -1,11 +1,11 @@
 // Import Section
 const router = require("express").Router();
-  
+const { registerUser } = require("../controllers/userController");
 
 // All User Part
 
 // Register User
-router.post("/register")
+router.post("/register", registerUser);
 // // Login User
 // router.post("/login")
 // // Forgot Password
@@ -21,13 +21,10 @@ router.post("/register")
 // // Update User
 // router.post("/me/update")
 
-
 // Only Admin Part
 // Get All User (Admin)
 // Get single User (Admin)
 // Update User (Admin)
 // Delete USer (Admin)
 
-  
 module.exports = router;
-  
