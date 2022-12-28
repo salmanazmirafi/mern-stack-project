@@ -4,6 +4,7 @@ const userModel = require("../models/userModel");
 const ErrorHandler = require("../utils/errorhander");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto")
 
 // All User Part
 // Register User
