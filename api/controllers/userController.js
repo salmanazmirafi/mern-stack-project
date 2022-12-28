@@ -4,7 +4,7 @@ const userModel = require("../models/userModel");
 const ErrorHandler = require("../utils/errorhander");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
-const crypto = require("crypto")
+const crypto = require("crypto");
 
 // All User Part
 // Register User
@@ -134,11 +134,62 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get User Details
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await userModel.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 // Update User
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const user = await userModel.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 // Update Password
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await userModel.findById(req.user.id).select("+password");
+
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old password is incorrect", 400));
+  }
+
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("password does not match", 400));
+  }
+
+  user.password = req.body.newPassword;
+
+  await user.save();
+
+  sendToken(user, 200, res);
+});
 
 // Only Admin Part
 // Get All User (Admin)
+exports.adminAllUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await userModel.find();
+  
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  });
 // Get single User (Admin)
 // Update User (Admin)
 // Delete USer (Admin)
