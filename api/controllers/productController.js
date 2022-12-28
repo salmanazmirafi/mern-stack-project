@@ -5,6 +5,7 @@ const ApiFeatures = require("../utils/apifeatures");
 
 // Crate Product (Admin)
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+  req.body.user = req.user.id
   const newProduct = await productModel.create(req.body);
   res.status(201).json({
     success: true,

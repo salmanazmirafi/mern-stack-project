@@ -1,6 +1,6 @@
 // Import Section
 const router = require("express").Router();
-const { registerUser, loginUser, logOut } = require("../controllers/userController");
+const { registerUser, loginUser, logOut, forgotPassword } = require("../controllers/userController");
 
 // All User Part
 
@@ -10,8 +10,8 @@ router.post("/register", registerUser);
 router.post("/login", loginUser)
 // Logout
 router.get("/logout",logOut)
-// // Forgot Password
-// router.post("/password/forgot")
+// Forgot Password
+router.post("/password/forgot", forgotPassword)
 // // Reset Password
 // router.put("/password/reset/:token")
 
