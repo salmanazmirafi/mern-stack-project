@@ -1,5 +1,5 @@
 .banner {
-  background-image: url("../../image/cover.jfif");
+  background-image: url("../../image/cover.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,10 +46,10 @@
   position: absolute;
   top: 0%;
   left: 0;
-  clip-path: polygon(100% 50%, 0 100%, 100% 100%);
+  clip-path: polygon(100% 74%, 0 100%, 100% 100%);
   max-width: 100%;
 }
-/*   
+  
   .homeHeading {
     text-align: center;
     font-family: Roboto;
@@ -60,7 +60,7 @@
     margin: 5vmax auto;
     color: rgb(0, 0, 0, 0.7);
   }
-  
+
   .container {
     display: flex;
     margin: 2vmax auto;
@@ -96,7 +96,11 @@
     margin: 0.5vmax;
     font: 300 0.7vmax "Roboto";
   }
-  
+  .productCard > img{
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+  }
   .productCard > p {
     font-family: "Roboto";
     font-size: 1.2vmax;
@@ -135,4 +139,4 @@
       margin: 0 0.5vmax;
       font: 300 1vmax "Roboto";
     }
-  } */
+  } 
