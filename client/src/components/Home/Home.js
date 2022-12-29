@@ -5,41 +5,81 @@ import ProductCard from "./ProductCard";
 
 const product = [
   {
-    name: "Iphone",
+    name: "Iphone 14pro",
     image: [
       { url: "https://www.pngmart.com/files/15/Apple-iPhone-12-PNG-Photo.png" },
     ],
-    price: 4000,
+    price: 44000,
     _id: 304939,
   },
   {
-    name: "Iphone",
+    name: "Iphone 13",
     image: [
       {
         url: "https://www.pngmart.com/files/15/Apple-iPhone-12-Transparent-PNG.png",
       },
     ],
-    price: 4000,
+    price: 52000,
     _id: 390939,
   },
   {
-    name: "Iphone",
+    name: "Iphone 12",
     image: [
       {
         url: "https://www.pngmart.com/files/15/Apple-iPhone-12-PNG-Transparent-Picture.png",
       },
     ],
-    price: 4000,
+    price: 6000,
     _id: 309939,
   },
   {
-    name: "Iphone",
+    name: "Iphone 12pro",
     image: [
       {
         url: "https://www.pngmart.com/files/15/Apple-iPhone-12-Transparent-Background.png",
       },
     ],
-    price: 4000,
+    price: 80000,
+    _id: 384939,
+  },
+  {
+    name: "Iphone Earphone",
+    image: [
+      {
+        url: "https://www.pngmart.com/files/6/Mobile-Earphone-PNG-HD.png",
+      },
+    ],
+    price: 80000,
+    _id: 384939,
+  },
+  {
+    name: "Normal Earphone",
+    image: [
+      {
+        url: "https://www.pngmart.com/files/6/Mobile-Earphone-PNG-Free-Download.png",
+      },
+    ],
+    price: 80000,
+    _id: 384939,
+  },
+  {
+    name: "7 Earphone",
+    image: [
+      {
+        url: "https://www.pngmart.com/files/7/Mobile-Earphone-PNG-Photos.png",
+      },
+    ],
+    price: 80000,
+    _id: 384939,
+  },
+  {
+    name: "Earphone",
+    image: [
+      {
+        url: "https://www.pngmart.com/files/7/Mobile-Earphone-PNG-Background-Image.png",
+      },
+    ],
+    price: 80000,
     _id: 384939,
   },
 ];
