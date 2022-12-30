@@ -1,7 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const cookiesParser = require("cookie-parser")
+const cookiesParser = require("cookie-parser");
+const cors = require("cors");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -13,7 +14,8 @@ process.on("uncaughtException", (err) => {
 const app = express();
 dotenv.config();
 app.use(express.json());
-app.use(cookiesParser())
+app.use(cookiesParser());
+app.use(cors());
 
 // Route Import
 const product = require("./routes/productRoute");

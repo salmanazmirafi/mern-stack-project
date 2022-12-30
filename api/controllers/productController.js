@@ -14,17 +14,9 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 });
 // Get All Product
 exports.getAllProduct = catchAsyncErrors(async (req, res, next) => {
-  const findAll = await productModel.find();
-
-  res.status(200).json({
-    success: true,
-    findAll,
-  });
-});
-// Get All Product (Admin)
-exports.getAdminProduct = catchAsyncErrors(async (req, res) => {
+  return next(ErrorHandler("His", 500));
   const resultPerPage = 8;
-  const productCount = await productModel.countDocuments();
+  const productsCount = await productModel.countDocuments();
 
   const apiFeature = new ApiFeatures(productModel.find(), req.query)
     .search()
@@ -36,14 +28,23 @@ exports.getAdminProduct = catchAsyncErrors(async (req, res) => {
 
   apiFeature.pagination(resultPerPage);
 
-  const findAll = await apiFeature.query;
+  products = await apiFeature.query;
+
+  res.status(200).json({
+    success: true,
+    products,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  });
+});
+// Get All Product (Admin)
+exports.getAdminProduct = catchAsyncErrors(async (req, res) => {
+  const findAll = await productModel.find();
 
   res.status(200).json({
     success: true,
     findAll,
-    productCount,
-    resultPerPage,
-    filteredProductsCount,
   });
 });
 
